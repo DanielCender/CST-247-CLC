@@ -1,12 +1,12 @@
 ﻿@model Minesweeper.Models.User
 
 @{
-    ViewData["Title"] = "Loginsuccess";
+    ViewData["Title"] = "RegisterSuccess";
 }
 
-<h1>Registration Success!! Welcome @Model.UserName!</h1>
+<h1>Registeration Success!!</h1>
 
-@*<div>
+<div>
     <h4>User</h4>
     <hr />
     <dl class="row">
@@ -66,7 +66,7 @@
         </dd>
     </dl>
 </div>
-<div>*@
+<div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>

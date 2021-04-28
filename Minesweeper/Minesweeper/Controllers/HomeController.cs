@@ -48,6 +48,6 @@ namespace Minesweeper.Controllers
             {
                 return View("LoginFailure", user);
             }
-        }
+        }        
     }
 }

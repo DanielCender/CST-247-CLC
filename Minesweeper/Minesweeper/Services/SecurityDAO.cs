@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Minesweeper.Data;
 using Minesweeper.Models;
 using System;
 using System.Collections.Generic;
@@ -6,44 +7,41 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Minesweeper.Services
-{    
-    public class SecurityDAO
+{
+    public class SecurityDAO : UserDAOInterface
     {
-        string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CST-247-Minesweeper;Integrated Security=True;
-                                Connect Timeout=30;
-                                Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        Database database = new Database();
+
+        public bool Create(User model)
+        {
+            // Get DB Connection
+            var dbConnection = database.DbConnection();
+
+            // Return if registered
+            return database.RegisterUser(model, dbConnection);
+        }
+
+        public bool Delete(User model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User Find(User model)
+        {
+            throw new NotImplementedException();
+        }
 
         public bool FindByUsernameAndPassword(User user)
         {
-            string sqlStatement = "Select * from dbo.Users where username = @Username AND password = @Password";
-
-            bool success = false;
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(sqlStatement, connection);
-
-                command.Parameters.Add("@Username", System.Data.SqlDbType.NVarChar, 50).Value = user.UserName;
-                command.Parameters.Add("@Password", System.Data.SqlDbType.NVarChar, 50).Value = user.Password;
-
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.HasRows)
-                    {
-                        success = true;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-
+            var dbConnection = database.DbConnection();            
+            
             // Return if found
-            return success;
+            return database.FindByUsernameAndPassword(user, dbConnection);
+        }
+
+        public bool Update(User model)
+        {
+            throw new NotImplementedException();
         }
     }
 }
