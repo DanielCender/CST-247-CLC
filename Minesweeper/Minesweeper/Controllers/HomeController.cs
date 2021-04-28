@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Minesweeper.Models;
+using Minesweeper.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,6 +33,21 @@ namespace Minesweeper.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public ActionResult Authenticate(User user)
+        {
+            SecurityDAO securityService = new SecurityDAO();
+            var result = securityService.FindByUsernameAndPassword(user);
+
+            if (result)
+            {
+                return View("LoginSuccess", user);
+            }
+            else
+            {
+                return View("LoginFailure", user);
+            }
         }
     }
 }

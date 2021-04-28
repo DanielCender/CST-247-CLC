@@ -3,6 +3,7 @@ namespace MinesweeperClassLib
 {
     public class Cell
     {
+        public string CellId { get; set; }
         public int Column { get; set; }
         public int Row { get; set; }
         public bool Visited { get; set; }

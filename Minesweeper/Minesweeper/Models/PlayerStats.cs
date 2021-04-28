@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MinesweeperClassLib
 {
     public class PlayerStats : IComparable<PlayerStats>
-    {
+    {                
+        public string PlayerId { get; set; }
         public string name { get; set;}
         // Time taken to complete game (in seconds)
         public decimal time { get; set; }

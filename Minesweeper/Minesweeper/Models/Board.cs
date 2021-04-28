@@ -3,6 +3,7 @@ namespace MinesweeperClassLib
 {
     public class Board
     {
+        public string BoardId { get; set; }
         public int Size { get; set; }
         public Cell[,] Grid { get; set; }
         public int Difficulty { get; set; }

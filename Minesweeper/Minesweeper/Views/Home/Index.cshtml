@@ -2,7 +2,53 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<body style="font-family: Aldrich, sans-serif;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div class="card border-secondary border rounded shadow" style="padding: 20px,10px;">
+                    <div class="card-body">
+                        <h1 class="display-4 card-title" style="padding-left: 10px;">Ready to Play?</h1>
+                        <div class="row">
+                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 text-start">
+                                <!--FORM STARTS HERE-->
+                                <form asp-area="" asp-controller="Home" asp-action="Authenticate" class="row" style="margin-left: 50px;">
+                                    <h3 class="text-secondary" style="margin-top: 15px;">Login</h3>
+                                    <!--USERNAME-->
+                                    <input class="form-control" type="text" name="username" placeholder="Username"
+                                           autofocus="" style="margin-top: 25px;" required>
+                                    <!--PASSWORD-->
+                                    <input class="form-control" type="password" name="password"
+                                           placeholder="Password" style="margin-top: 25px;" required>
+
+                                    <label class="form-label" style="margin-top: 25px;">Game Mode</label>
+                                    <!--GAME LEVEL SELECTION (OPTIONAL)-->
+                                    <select class="form-select form-select-lg">
+                                        <option selected>---Choose Game Level---</option>
+                                        <option value="0">Easy</option>
+                                        <option value="1">Medium</option>
+                                        <option value="2">Hard</option>
+                                    </select>
+                                    <!--SUBMIT BUTTON-->
+                                    <button class="btn btn-success" type="submit" name="play_btn"
+                                            style="margin-top: 30px;">
+                                        Let's
+                                        Play!
+                                    </button>
+                                </form>
+                                <!--FORM ENDS HERE-->
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 ">
+                                <img class="img-fluid"
+                                     src="img/play_flag.jpg">
+                            </div>
+                        </div>
+                        <p class="mt-5 text-center">No Account? <a href="register.html">Create an account</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</body>
