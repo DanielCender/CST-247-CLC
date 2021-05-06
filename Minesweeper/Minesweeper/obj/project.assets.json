@@ -7148,19 +7148,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hiram\\.nuget\\packages\\": {}
+    "C:\\Users\\drc98\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hiram\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
+      "projectUniqueName": "C:\\Users\\drc98\\Documents\\GitHub\\CST-247-CLC\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
       "projectName": "Minesweeper",
-      "projectPath": "C:\\Users\\hiram\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
-      "packagesPath": "C:\\Users\\hiram\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hiram\\source\\repos\\Minesweeper\\Minesweeper\\obj\\",
+      "projectPath": "C:\\Users\\drc98\\Documents\\GitHub\\CST-247-CLC\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
+      "packagesPath": "C:\\Users\\drc98\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\drc98\\Documents\\GitHub\\CST-247-CLC\\Minesweeper\\Minesweeper\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hiram\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\drc98\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
