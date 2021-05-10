@@ -1,0 +1,93 @@
+﻿@using MinesweeperClassLib;
+@model Board
+
+@{
+    ViewData["Title"] = "Game";
+}
+
+@{ 
+    int rowInput = 0;
+    int colInput = 0;
+}
+
+@functions {
+
+}
+
+<h1>Minesweeper</h1>
+
+<hr />
+<div class="container" style="margin-bottom:4rem;">
+    <form method="post" asp-area="" asp-controller="Game" asp-action="UpdateCell" class="container">
+        <input type="hidden" value=@rowInput />
+        <input type="hidden" value=@colInput /> <!-- Attempting to use hidden values to get click updates through to POST handler -->
+        @{
+            for (int row = 0; row < Model.Grid.GetLength(0); row++)
+            {
+                <div class="row d-flex justify-content-center align-items-center pr-2 pl-2 pt-3">
+                    @{ for (int col = 0; col < Model.Grid.GetLength(1); col++)
+                        {
+                            /*
+                            Logic attempting to implement here
+                            // Set all non-live, visited, non-flagged cells to
+                            // background color if they have > 0 live
+                            //  neighbors
+                            // Otherwise just set the text value
+                            if (board.Grid[r, c].Visited && board.Grid[r, c].LiveNeighbors > 0) boardBtns[r, c].Text = string.Format("{0}", board.Grid[r, c].LiveNeighbors);
+                            else if (board.Grid[r, c].Visited) boardBtns[r, c].BackColor = Color.FromArgb(167, 188, 216);
+                                */
+                            Cell c = Model.Grid[row, col];
+                            bool showBomb = c.Visited && c.Live;
+                            bool flag = c.Flagged;
+                            <div style="height:40px;width:40px;padding:0;margin-right:6px;margin-left:6px;">
+                                @{ if (c.Visited)
+                                    {
+                                        if (!c.Live && c.LiveNeighbors > 0)
+                                        {
+                                            /// Nothing yet
+                                            <button type="button" class="btn btn-secondary" style="width:100%;height:100%;" onclick=>
+                                                <span>@c.LiveNeighbors</span>
+                                            </button>
+                                        }
+                                        else if (!c.Live)
+                                        {
+                                            // Just a regular discovered tile
+                                            <button type="button" class="btn btn-secondary" style="width:100%;height:100%;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                                    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+                                                </svg>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            // Live bomb, implies game is ended
+                                            <button type="button" class="btn btn-danger" style="width:100%;height:100%;">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-dizzy-fill" viewBox="0 0 16 16">
+                                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM4.146 5.146a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 1 1 .708.708l-.647.646.647.646a.5.5 0 1 1-.708.708L5.5 7.207l-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zm5 0a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 1 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 0-.708zM8 13a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+                                                </svg>
+                                            </button>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        // Question, unvisited
+                                        <button type="button" class="btn btn-secondary" style="width:100%;height:100%;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question" viewBox="0 0 16 16">
+                                                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                                            </svg>
+                                        </button>
+                                    }
+                                }
+                            </div> } }
+                </div> }
+        }
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

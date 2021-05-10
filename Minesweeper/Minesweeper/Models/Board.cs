@@ -13,6 +13,7 @@ namespace MinesweeperClassLib
             Size = 16;
             Difficulty = 20; // 20% of board is bombs to start
             Grid = new Cell[Size, Size];
+            SetupLiveNeighbors();
         }
         public Board(int difficulty)
         {

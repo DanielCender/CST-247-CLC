@@ -42,7 +42,8 @@ namespace Minesweeper.Controllers
 
             if (result)
             {
-                return View("LoginSuccess", user);
+                return Redirect("/Game/Index");
+                //return View("LoginSuccess", user);
             }
             else
             {
