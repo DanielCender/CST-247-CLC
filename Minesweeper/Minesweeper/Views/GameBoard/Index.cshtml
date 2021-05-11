@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Minesweeper.Models.CellClass>
+
+<style>
+    .cell {
+        width:50px;
+    }
+    .btn{
+        border: none;
+    }
+
+</style>
+@{ string[] imagename = { "notclicked.png", "visited.png", "mine.png" };}
+
+<div class="container-fluid text-center">
+    <form>
+        <div class="row">
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                //create a new line every 12th cell/button
+                if (i % 12 == 0)
+                {
+                    <div style="flex-basis:100%; height:0"></div>
+                }
+                <div class="col-1" id=@i>
+                    <button class="btn" type="submit" name="ButtonNumber" value="@Model.ElementAt(i).Id" asp-controller="GameBoard" asp-action="ButtonClick">
+                        <img class="cell" src="~/img/@imagename[Model.ElementAt(i).CellPic]" />
+                    </button>
+                </div>
+            }
+
+        </div>
+    </form>
+    
+</div>
