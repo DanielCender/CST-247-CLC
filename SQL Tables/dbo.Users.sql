@@ -1,7 +1,7 @@
 USE [CST-247-Minesweeper]
 GO
 
-/****** Object: Table [dbo].[Users] Script Date: 4/28/2021 3:46:08 PM ******/
+/****** Object: Table [dbo].[Users] Script Date: 5/13/2021 9:46:50 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -12,9 +12,9 @@ CREATE TABLE [dbo].[Users] (
     [Id]        INT           IDENTITY (1, 1) NOT NULL,
     [FirstName] NCHAR (20)    NOT NULL,
     [LastName]  NCHAR (20)    NOT NULL,
-    [Gender]    BIT           NOT NULL,
-    [Age]       TINYINT       NOT NULL,
-    [State]     NCHAR (20)    NOT NULL,
+    [Gender]    TINYINT       NOT NULL,
+    [Age]       INT           NOT NULL,
+    [State]     NVARCHAR (20) NOT NULL,
     [Email]     NVARCHAR (50) NOT NULL,
     [Username]  NVARCHAR (50) NOT NULL,
     [Password]  NVARCHAR (50) NOT NULL

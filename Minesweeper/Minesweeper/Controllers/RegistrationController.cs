@@ -24,11 +24,11 @@ namespace Minesweeper.Controllers
             user.LastName = LastName;
             if (Gender == "Male")
             {
-                user.Gender = false;
+                user.Gender = 0;
             }
             else if (Gender == "Female")
             {
-                user.Gender = true;
+                user.Gender = 1;
             }
             user.Age = Age;
             user.State = State;
@@ -36,7 +36,7 @@ namespace Minesweeper.Controllers
             user.UserName = "sBlackwing";
             user.Password = Password;
             
-            SecurityDAO securityService = new SecurityDAO();
+            UserSecurityDAO securityService = new UserSecurityDAO();
             var result = securityService.Create(user);
 
             if (result)

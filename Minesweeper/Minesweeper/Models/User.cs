@@ -16,8 +16,8 @@ namespace Minesweeper.Models
         [StringLength(20, MinimumLength = 2)]
         public string LastName { get; set; }
         [Required]
-        [Range(typeof(bool), "true", "true", ErrorMessage = "The field Gender must be selected.")]
-        public bool Gender { get; set; }
+        [Range(0, 1, ErrorMessage = "The field Gender must be selected.")]
+        public int Gender { get; set; }
         [Required]
         [Range(0, 120, ErrorMessage = "Please enter valid integer Number")]
         public int Age { get; set; }
@@ -36,7 +36,7 @@ namespace Minesweeper.Models
         public string Password { get; set; }
 
         public User() { }
-        public User(int userId, string firstName, string lastName, bool gender, int age, string state, string email, string userName, string password)
+        public User(int userId, string firstName, string lastName, int gender, int age, string state, string email, string userName, string password)
         {
             UserId = userId;
             FirstName = firstName;

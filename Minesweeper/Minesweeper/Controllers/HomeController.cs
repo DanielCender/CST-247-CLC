@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Logging;
 using Minesweeper.Models;
 using Minesweeper.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,19 +37,22 @@ namespace Minesweeper.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public ActionResult Authenticate(User user)
+        public ActionResult Authenticate(string username, string password)
         {
-            SecurityDAO securityService = new SecurityDAO();
-            var result = securityService.FindByUsernameAndPassword(user);
+            UserSecurityDAO securityService = new UserSecurityDAO();
+            //var result = securityService.FindByUsernameAndPassword(username, password);
+            var result = securityService.FindById(1);
 
-            if (result)
+            if (result != null)
             {
-                return Redirect("/Game/Index");
-                //return View("LoginSuccess", user);
+                //var jsonString = JsonConvert.SerializeObject(
+                     //result, Formatting.Indented, new JsonConverter[] { new StringEnumConverter() });
+                //return Redirect("/Game/Index");
+                return View("LoginSuccess", result);
             }
             else
             {
-                return View("LoginFailure", user);
+                return View("LoginFailure", username);
             }
         }        
     }

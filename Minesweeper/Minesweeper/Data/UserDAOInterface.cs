@@ -8,10 +8,10 @@ namespace Minesweeper.Data
 {
     interface UserDAOInterface
     {
-        public User Find(User model);
-        public bool FindByUsernameAndPassword(User model);        
+        public User FindById(int id);
+        public bool FindByUsernameAndPassword(string username, string password);        
         public bool Create(User model);
-        public bool Update(User model);
-        public bool Delete(User model);
+        public bool Update(int id);
+        public bool Delete(int id);
     }
 }

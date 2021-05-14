@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\drc98\\Documents\\GitHub\\CST-247-CLC\\Minesweeper\\Minesweeper\\Minesweeper.csproj": {}
+    "C:\\Users\\hiram\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\drc98\\Documents\\GitHub\\CST-247-CLC\\Minesweeper\\Minesweeper\\Minesweeper.csproj": {
+    "C:\\Users\\hiram\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\drc98\\Documents\\GitHub\\CST-247-CLC\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
+        "projectUniqueName": "C:\\Users\\hiram\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
         "projectName": "Minesweeper",
-        "projectPath": "C:\\Users\\drc98\\Documents\\GitHub\\CST-247-CLC\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
-        "packagesPath": "C:\\Users\\drc98\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\drc98\\Documents\\GitHub\\CST-247-CLC\\Minesweeper\\Minesweeper\\obj\\",
+        "projectPath": "C:\\Users\\hiram\\source\\repos\\Minesweeper\\Minesweeper\\Minesweeper.csproj",
+        "packagesPath": "C:\\Users\\hiram\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hiram\\source\\repos\\Minesweeper\\Minesweeper\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\drc98\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hiram\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
