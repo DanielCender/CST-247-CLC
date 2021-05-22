@@ -1,0 +1,7 @@
+﻿@model Minesweeper.Models.CellClass
+
+@{ string[] imagename = { "oringinal.png", "clicked.png", "minehit.png" };}
+
+<button class="btn" type="submit" name="ButtonNumber" value="@Model.Id" asp-controller="GameBoard" asp-action="ButtonClick" disabled>
+    <img class="cell" src="~/img/@imagename[Model.CellPic]" />
+</button>

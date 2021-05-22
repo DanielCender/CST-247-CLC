@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Minesweeper.Models.CellClass>
+
+@{ string[] imagename = { "oringinal.png", "clicked.png", "minehit.png" };}
+
+<div>
+    <div class="grid">
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                <div id=@i>
+                    <button class="btn" type="submit" name="ButtonNumber" value="@Model.ElementAt(i).Id" asp-controller="GameBoard" asp-action="ButtonClick">
+                        <img class="cell" src="~/img/@imagename[Model.ElementAt(i).CellPic]"/>
+                    </button>
+                </div>
+                }
+    </div>
+    
+</div>

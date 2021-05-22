@@ -1,0 +1,74 @@
+﻿/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    /*Display grid qith 12 cols*/
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12,40px);
+        grid-template-rows: repeat(12,40px);
+    }
+    /*Adjust the cell picture*/
+    .btn .cell {
+        width: 40px;
+        object-fit: contain;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    /*Display grid qith 12 cols*/
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12,45px);
+        grid-template-rows: repeat(12,45px);
+    }
+    /*Adjust the cell picture*/
+    .btn .cell {
+        width: 45px;
+        object-fit: contain;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    /*Display grid qith 12 cols*/
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12,60px);
+        grid-template-rows: repeat(12,60px);
+    }
+    /*Adjust the cell picture*/
+    .btn .cell {
+        width: 60px;
+        object-fit: contain;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    /*Display grid qith 12 cols*/
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12,75px);
+        grid-template-rows: repeat(12,75px);
+    }
+    /*Adjust the cell picture*/
+    .btn .cell {
+        width: 75px;
+        object-fit: contain;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    /*Display grid qith 12 cols*/
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(12,80px);
+        grid-template-rows: repeat(12,80px);
+    }
+    /*Adjust the cell picture*/
+    .btn .cell {
+        width: 80px;
+        object-fit: contain;
+    }
+}

@@ -26,7 +26,17 @@ namespace Minesweeper.Services
             throw new NotImplementedException();
         }
 
+        public bool Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public User Find(User model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User FindById(int id)
         {
             throw new NotImplementedException();
         }
@@ -39,7 +49,17 @@ namespace Minesweeper.Services
             return database.FindByUsernameAndPassword(user, dbConnection);
         }
 
+        public bool FindByUsernameAndPassword(string username, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(User model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(int id)
         {
             throw new NotImplementedException();
         }
