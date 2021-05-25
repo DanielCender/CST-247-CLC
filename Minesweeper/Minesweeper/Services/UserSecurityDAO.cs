@@ -42,11 +42,11 @@ namespace Minesweeper.Services
             return service.FindByUsernameAndPassword(username, password, dbConnection);
         }
 
-        public bool Update(int id, string column, string changeString)
-        {
-            var dbConnection = database.DbConnection();
-            return service.UpdateUser(id, column, changeString, dbConnection);
-        }
+        //public bool Update(int id, string column, string changeString)
+        //{
+        //    var dbConnection = database.DbConnection();
+        //    return service.UpdateUser(id, column, changeString, dbConnection);
+        //}
 
         public bool Update(int id, string column, int changeInt)
         {

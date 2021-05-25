@@ -302,3 +302,5 @@ C:\Users\drc98\Documents\GitHub\CST-247-CLC\Minesweeper\Minesweeper\obj\Debug\ne
 C:\Users\drc98\Documents\GitHub\CST-247-CLC\Minesweeper\Minesweeper\obj\Debug\net5.0\Minesweeper.genruntimeconfig.cache
 C:\Users\drc98\Documents\GitHub\CST-247-CLC\Minesweeper\Minesweeper\obj\Debug\net5.0\Razor\Views\Game\Game.cshtml.g.cs
 C:\Users\hiram\source\repos\Minesweeper\Minesweeper\obj\Debug\net5.0\Razor\Views\Game\Game.cshtml.g.cs
+C:\Users\hiram\source\repos\Minesweeper\Minesweeper\obj\Debug\net5.0\Razor\Views\GameBoard\Index.cshtml.g.cs
+C:\Users\hiram\source\repos\Minesweeper\Minesweeper\obj\Debug\net5.0\Razor\Views\GameBoard\RefreshButton.cshtml.g.cs

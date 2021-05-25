@@ -17,6 +17,8 @@ namespace MinesweeperClassLib
         public DateTime AverageTime { get; set; }
         public DateTime BestTime { get; set; }
 
+        public PlayerStats() { }
+
         public PlayerStats(string n, decimal t, int w, int l, int total, DateTime avg, DateTime best)
         {
             name = n;

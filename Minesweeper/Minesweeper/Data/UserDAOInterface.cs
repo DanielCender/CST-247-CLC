@@ -11,7 +11,7 @@ namespace Minesweeper.Data
         public User FindById(int id);
         public bool FindByUsernameAndPassword(string username, string password);        
         public bool Create(User model);
-        public bool Update(int id);
+        public bool Update(int id, string column, int changeInt);
         public bool Delete(int id);
     }
 }

@@ -12,25 +12,30 @@ namespace Minesweeper.Services
     public class StatsSecurityDAO : StatsDAOInterface
     {
         Database database = new Database();
+        StatsDBService service = new StatsDBService();
 
-        public PlayerStats Create(PlayerStats model)
+        public bool Create(PlayerStats model)
         {
-            throw new NotImplementedException();
+            var dbConnect = database.DbConnection();
+            return service.Create(model, dbConnect);
         }
 
-        public PlayerStats Delete(int id)
+        public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var dbConnect = database.DbConnection();
+            return service.Delete(id, dbConnect);
         }
 
-        public PlayerStats FindBy(string searchTerm)
+        public List<PlayerStats> FindBy(string searchTerm)
         {
-            throw new NotImplementedException();
+            var dbConnect = database.DbConnection();
+            return service.FindBy(searchTerm, dbConnect);
         }
 
-        public PlayerStats Update(int id)
+        public bool Update(PlayerStats stats)
         {
-            throw new NotImplementedException();
+            var dbConnect = database.DbConnection();
+            return service.Update(stats, dbConnect);
         }
     }
 }

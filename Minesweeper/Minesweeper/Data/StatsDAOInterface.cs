@@ -8,9 +8,9 @@ namespace Minesweeper.Data
 {
     interface StatsDAOInterface
     {
-        PlayerStats Create(PlayerStats model);
-        PlayerStats Update(int id);
-        PlayerStats Delete(int id);
-        PlayerStats FindBy(string searchTerm);
+        public bool Create(PlayerStats model);
+        public bool Update(PlayerStats model);
+        public bool Delete(int id);
+        public List<PlayerStats> FindBy(string searchTerm);
     }
 }
