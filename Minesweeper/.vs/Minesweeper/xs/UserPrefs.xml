@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{C2892D54-AB04-4835-9D35-85B5A7D71B21}|Default">
+  <MonoDevelop.Ide.ItemProperties.Minesweeper PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Minesweeper/Services/SecurityDAO.cs">
+    <Files>
+      <File FileName="Minesweeper/Services/SecurityDAO.cs" Line="12" Column="6" />
+      <File FileName="Minesweeper/Data/UserDAOInterface.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Minesweeper" expanded="True">
+            <Node name="Minesweeper" expanded="True">
+              <Node name="Data" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="SecurityDAO.cs" selected="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

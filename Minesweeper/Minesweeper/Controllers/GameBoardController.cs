@@ -31,17 +31,36 @@ namespace Minesweeper.Controllers
         //allows for Ajax/partial view to change the buttons
         public IActionResult RefreshButton(int buttonNumber)
         {
-            //if the cell is a normal button, make it appart as a visited picture
-            if (Cells.ElementAt(buttonNumber).CellState == 0)
+            //if the cell is a normal button and not flagged, make it appart as a visited picture
+            if (Cells.ElementAt(buttonNumber).CellState == 0 && Cells.ElementAt(buttonNumber).flagged == false)
             {
                 Cells.ElementAt(buttonNumber).CellPic = 1;
             }
 
-            //if the cell is a bomb state, make it appear as a bomb picture
-            if (Cells.ElementAt(buttonNumber).CellState == 1)
+            //if the cell is a bomb state and not flagged, make it appear as a bomb picture
+            if (Cells.ElementAt(buttonNumber).CellState == 1 && Cells.ElementAt(buttonNumber).flagged == false)
             {
                 Cells.ElementAt(buttonNumber).CellPic = 2;
             }
+
+            return PartialView(Cells.ElementAt(buttonNumber));
+        }
+
+
+        //Change the button to a flag
+        public IActionResult FlagButton(int buttonNumber)
+        {
+            if (Cells.ElementAt(buttonNumber).flagged == false)
+            {
+                Cells.ElementAt(buttonNumber).CellPic = 3;
+                Cells.ElementAt(buttonNumber).flagged = true;
+            }
+            else
+            {
+                Cells.ElementAt(buttonNumber).CellPic = 0;
+                Cells.ElementAt(buttonNumber).flagged = false;
+            }
+           
             return PartialView(Cells.ElementAt(buttonNumber));
         }
     }

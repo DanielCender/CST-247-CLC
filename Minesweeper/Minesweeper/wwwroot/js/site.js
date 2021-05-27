@@ -1,24 +1,53 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿var toggle = document.getElementById("theme-toggle");
 
-// Write your JavaScript code.
+var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+if (storedTheme)
+    document.documentElement.setAttribute('data-theme', storedTheme)
+
+
+toggle.onclick = function () {
+    var currentTheme = document.documentElement.getAttribute("data-theme");
+    var targetTheme = "light";
+
+    if (currentTheme === "light") {
+        targetTheme = "dark";
+    }
+
+    document.documentElement.setAttribute('data-theme', targetTheme)
+    localStorage.setItem('theme', targetTheme);
+};
+
+
+
 $(function () {
-    $(document).on("click", ".btn", function (event) {
+
+    $(document).on("mousedown", ".btn", function (event) {
         event.preventDefault();
 
-        //Get the button number and then do a button update function that runs AJAX
-
-        var buttonNumber = $(this).val();
-        console.log(buttonNumber);
-        ButtonUpdate(buttonNumber);
+        switch (event.which) {
+            case 1:
+                var buttonNumber = $(this).val();
+                ButtonClick(buttonNumber, '/gameboard/RefreshButton' );
+                break;
+            case 2:
+                alert("middleMouse click");
+                break;
+            case 3:
+                var buttonNumber = $(this).val();
+                ButtonClick(buttonNumber, '/gameboard/FlagButton');
+                break;
+            default:
+                alert("unknown click");
+        }
     });
 
     //run AJAX
-    function ButtonUpdate(buttonNumber) {
+
+    function ButtonClick(buttonNumber, AjaxUrlSrc) {
         $.ajax({
             datatype: "json",
             method: 'POST',
-            url: '/gameboard/RefreshButton',
+            url: AjaxUrlSrc,
             data: {
                 "buttonNumber": buttonNumber
             },
@@ -28,4 +57,12 @@ $(function () {
             }
         });
     }
+
+
+
+    //Disable uses from acessing the right click menu
+
+    $(document).bind("contextmenu", function (e) {
+        e.preventDefault();
+    });
 });
