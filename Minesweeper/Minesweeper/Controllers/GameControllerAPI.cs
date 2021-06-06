@@ -28,9 +28,10 @@ namespace Minesweeper.Controllers
             return NotFound(id);
         }
 
-        [HttpPost("games/{id}/save")]
+        [HttpPost("games/save")]
         public ActionResult Save(Game game)
         {
+            System.Diagnostics.Debug.WriteLine("Got to here, issue in service.SaveGame");
             GameSecurityDAO service = new GameSecurityDAO();
             bool result = service.SaveGame(game);
             if (!result) return NotFound(game);
