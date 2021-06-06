@@ -19,7 +19,6 @@ namespace Minesweeper.Data
             // Prepared statement
             SqlCommand command = new SqlCommand(sqlStatement, dbConnection);
             command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = id;
-            System.Diagnostics.Debug.WriteLine("Has gotten to here in DB Service with id: " + id);
             try
             {
                 dbConnection.Open();
@@ -81,24 +80,43 @@ namespace Minesweeper.Data
             }
             return null;
         }
-        public bool PauseGame(Game game, SqlConnection dbConnection)
+        public bool SaveGame(Game game, SqlConnection dbConnection)
         {
+            Game saved = null;
+            bool exists = false;
+
+            if (game.Id == 0)
+            {
+                saved = FindById(game.Id, dbConnection);
+                exists = true;
+            }
+
             var success = false;
+            string sqlStatement = "";
 
-            string sqlStatement = "Insert into dbo.Game (Date, Difficulty, Result, Time, FlagsRemaining, Status, State) " +
-                                  "VALUES (@Date, @Difficulty, @Result, @Time, @FlagsRemaining, @Status, @State)";
-
+            if(exists)
+            {
+                sqlStatement = "UPDATE dbo.Game SET UserId = @UserId, Date = @Date, Difficulty = @Difficulty, Result = @Result, " +
+                                   "Time = @Time, FlagsRemaining = @FlagsRemaining, Status = @Status, State = @State) " +
+                                   "WHERE Id = @Id";
+            } else
+            {
+                sqlStatement = "Insert into dbo.Game (UserId, Date, Difficulty, Result, Time, FlagsRemaining, Status, State) " +
+                                  "VALUES (@UserId, @Date, @Difficulty, @Result, @Time, @FlagsRemaining, @Status, @State)";
+            }
             var gameStateString = JsonConvert.SerializeObject(
                  game.State, Formatting.Indented, new JsonConverter[] { new StringEnumConverter() });
 
             // Prepared statement
             SqlCommand command = new SqlCommand(sqlStatement, dbConnection);
+            if (exists) command.Parameters.Add("@Id", System.Data.SqlDbType.Int).Value = game.Id;
+            command.Parameters.Add("@UserId", System.Data.SqlDbType.Int).Value = saved != null && game.UserId != saved.UserId ? game.UserId : saved.UserId;
             command.Parameters.Add("@Date", System.Data.SqlDbType.NChar, 20).Value = DateTime.Now;
             command.Parameters.Add("@Difficulty", System.Data.SqlDbType.NChar, 20).Value = game.State.Difficulty;
             command.Parameters.Add("@Result", System.Data.SqlDbType.Bit).Value = game.Result;
             command.Parameters.Add("@Time", System.Data.SqlDbType.Int).Value = game.Time;
             command.Parameters.Add("@FlagsRemaining", System.Data.SqlDbType.NChar, 20).Value = game.FlagsRemaining;
-            command.Parameters.Add("@Status", System.Data.SqlDbType.NVarChar, 50).Value = game.State;
+            command.Parameters.Add("@Status", System.Data.SqlDbType.Bit).Value = game.Status;
             command.Parameters.Add("@State", System.Data.SqlDbType.NVarChar).Value = gameStateString;
 
             try
@@ -119,14 +137,16 @@ namespace Minesweeper.Data
             return success;
         }
 
-        public Game ResumeGame(int id, SqlConnection dbConnection)
+        // Not Needed
+       /* public Game ResumeGame(int id, SqlConnection dbConnection)
         {
             Game game = new Game();
-            // TODO: This isn't complete either
 
+
+            // Get Ordinal values
 
             return game;
             throw new NotImplementedException();
-        }
+        }*/
     }
 }

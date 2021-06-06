@@ -28,25 +28,11 @@ namespace Minesweeper.Controllers
             return NotFound(id);
         }
 
-        [HttpPost("games/{id}/resume")]
-        public ActionResult Resume(string id)
+        [HttpPost("games/{id}/save")]
+        public ActionResult Save(Game game)
         {
             GameSecurityDAO service = new GameSecurityDAO();
-            int searchId;
-            if (Int32.TryParse(id, out searchId))
-            {
-                Game result = service.ResumeGame(searchId);
-                if (result == null || result.Id != searchId) return NotFound(id);
-                return Ok(result);
-            }
-            return NotFound(id);
-        }
-
-        [HttpPost("games/{id}/pause")]
-        public ActionResult Pause(Game game)
-        {
-            GameSecurityDAO service = new GameSecurityDAO();
-            bool result = service.PauseGame(game);
+            bool result = service.SaveGame(game);
             if (!result) return NotFound(game);
             return Ok("Successfully paused the game: " + game.Id);
         }

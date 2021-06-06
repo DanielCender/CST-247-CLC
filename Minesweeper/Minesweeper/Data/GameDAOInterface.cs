@@ -10,8 +10,8 @@ namespace Minesweeper.Data
     interface GameDAOInterface
     {
         public Game FindById(int id);
-        public bool PauseGame(Game game);
+        public bool SaveGame(Game game);
 
-        public Game ResumeGame();
+        // NOT NEEDED - public Game ResumeGame(int id);
     }
 }

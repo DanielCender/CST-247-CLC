@@ -19,16 +19,10 @@ namespace Minesweeper.Services
             return service.FindById(id, dbConnection);
         }
 
-        public bool PauseGame(Game game)
+        public bool SaveGame(Game game)
         {
             var dbConnection = database.DbConnection();
-            return service.PauseGame(game, dbConnection);            
-        }
-
-        public Game ResumeGame(int id)
-        {
-            var dbConnection = database.DbConnection();
-            return service.ResumeGame(dbConnection);
+            return service.SaveGame(game, dbConnection);            
         }
     }
 }
