@@ -1,6 +1,7 @@
 ﻿using System;
 namespace MinesweeperClassLib
 {
+    [Serializable()]
     public class Cell
     {
         public string CellId { get; set; }

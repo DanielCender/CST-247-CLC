@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
+
 namespace MinesweeperClassLib
 {
+    [Serializable()]
     public class Board
     {
         public string BoardId { get; set; }

@@ -11,6 +11,7 @@ namespace Minesweeper.Services
     public class SecurityDAO : UserDAOInterface
     {
         Database database = new Database();
+        UserDBService service = new UserDBService();
 
         public bool Create(User model)
         {
@@ -18,7 +19,8 @@ namespace Minesweeper.Services
             var dbConnection = database.DbConnection();
 
             // Return if registered
-            return database.RegisterUser(model, dbConnection);
+            return service.RegisterUser(model, dbConnection);
+
         }
 
         public bool Delete(User model)
@@ -46,7 +48,7 @@ namespace Minesweeper.Services
             var dbConnection = database.DbConnection();            
             
             // Return if found
-            return database.FindByUsernameAndPassword(user, dbConnection);
+            return service.FindByUsernameAndPassword(user.UserName, user.Password, dbConnection);
         }
 
         public bool FindByUsernameAndPassword(string username, string password)
@@ -54,7 +56,9 @@ namespace Minesweeper.Services
             throw new NotImplementedException();
         }
 
-        public bool Update(User model)
+        // TODO: Fix this implementation, this isn't going to work
+
+        public bool Update(int first, string second, int third)
         {
             throw new NotImplementedException();
         }
