@@ -13,9 +13,11 @@ namespace Minesweeper.Controllers
         Random random = new Random();
         const int GRID_SIZE = 144;
 
+        // TODO: Need to create a "board" instance that will inform how the view state should be updated as user's act on the cells.
 
         public IActionResult Index()
         {
+            // TODO: Should be filling out a multi-dimensional ListArray of Cell instances.
             if (Cells.Count < GRID_SIZE)
             {
                 for (int i = 0; i < GRID_SIZE; i++)
@@ -31,6 +33,8 @@ namespace Minesweeper.Controllers
         //allows for Ajax/partial view to change the buttons
         public IActionResult RefreshButton(int buttonNumber)
         {
+            // TODO: Here we need to update the Cell in the "hidden board" and update the view according to the Cell's neighbor states, etc.
+            System.Diagnostics.Debug.WriteLine("ButtonNumber: " + buttonNumber);
             //if the cell is a normal button and not flagged, make it appart as a visited picture
             if (Cells.ElementAt(buttonNumber).CellState == 0 && Cells.ElementAt(buttonNumber).flagged == false)
             {

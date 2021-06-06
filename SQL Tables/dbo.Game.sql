@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[Game](
 	[Date] [date] NULL,
 	[Difficulty] [nvarchar](10) NULL,
 	[Result] [bit] NULL,
-	[Time] [time](7) NULL,
+	[Time] [int] NULL,
 	[FlagsRemaining] [int] NULL,
 	[Status] [bit] NULL,
 	[State] [nvarchar](max) NULL,
