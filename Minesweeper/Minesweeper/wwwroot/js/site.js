@@ -26,15 +26,15 @@ $(function () {
 
         switch (event.which) {
             case 1:
-                var buttonNumber = $(this).val();
-                ButtonClick(buttonNumber, '/gameboard/RefreshButton' );
+                var buttonPos = $(this).val();
+                ButtonClick(buttonPos, '/gameboard/RefreshButton' );
                 break;
             case 2:
                 alert("middleMouse click");
                 break;
             case 3:
-                var buttonNumber = $(this).val();
-                ButtonClick(buttonNumber, '/gameboard/FlagButton');
+                var buttonPos = $(this).val();
+                ButtonClick(buttonPos, '/gameboard/FlagButton');
                 break;
             default:
                 alert("unknown click");
@@ -43,17 +43,20 @@ $(function () {
 
     //run AJAX
 
-    function ButtonClick(buttonNumber, AjaxUrlSrc) {
+    function ButtonClick(buttonPos, AjaxUrlSrc) {
+        var [row, col] = buttonPos.split('+');
+
         $.ajax({
             datatype: "json",
             method: 'POST',
             url: AjaxUrlSrc,
             data: {
-                "buttonNumber": buttonNumber
+                "buttonRow": row,
+                "buttonCol": col
             },
             success: function (data) {
                 console.log(data);
-                $("#" + buttonNumber).html(data);
+                $("#" + buttonPos).html(data);
             }
         });
     }

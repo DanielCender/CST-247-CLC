@@ -48,7 +48,7 @@ namespace Minesweeper.Controllers
                 //var jsonString = JsonConvert.SerializeObject(
                      //result, Formatting.Indented, new JsonConverter[] { new StringEnumConverter() });
                 //return Redirect("/Game/Index");
-                return View("LoginSuccess", result);
+                return Redirect("/GameBoard");
             }
             else
             {

@@ -1,7 +1,7 @@
-﻿@model Minesweeper.Models.CellClass
+﻿@model MinesweeperClassLib.Cell
 
-@{ string[] imagename = { "oringinal.png", "clicked.png", "minehit.png", "flagged.png" };}
+@{ string[] imagename = { "oringinal.png", "flagged.png" };}
 
-<button class="btn" type="submit" name="ButtonNumber" value="@Model.Id" asp-controller="GameBoard" asp-action="ButtonClick">
-    <img class="cell" src="~/img/@imagename[Model.CellPic]" />
+<button class="btn" type="submit" name="ButtonNumber" value="@Model.Row+@Model.Column" asp-controller="GameBoard" asp-action="ButtonClick">
+    <img class="cell" src="~/img/@imagename[Model.Flagged ? 1 : 0]" />
 </button>
