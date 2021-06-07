@@ -4,68 +4,92 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Minesweeper.Models;
+using MinesweeperClassLib;
 
 namespace Minesweeper.Controllers
 {
     public class GameBoardController : Controller
     {
-        static List<CellClass> Cells = new List<CellClass>();
-        Random random = new Random();
-        const int GRID_SIZE = 144;
-
-        // TODO: Need to create a "board" instance that will inform how the view state should be updated as user's act on the cells.
+        static Board gameBoard;
+        const int GRID_SIZE = 12; // 144 when squared
 
         public IActionResult Index()
         {
-            // TODO: Should be filling out a multi-dimensional ListArray of Cell instances.
-            if (Cells.Count < GRID_SIZE)
-            {
-                for (int i = 0; i < GRID_SIZE; i++)
-                {
-                    Cells.Add(new CellClass { Id = i, CellState = random.Next(2), CellPic = 0, LiveNeighbors = 0 });
-                }
-            }
+            gameBoard = new Board(10, GRID_SIZE);
             
-            return View(Cells);
+            return View(gameBoard);
         }
        
 
         //allows for Ajax/partial view to change the buttons
-        public IActionResult RefreshButton(int buttonNumber)
+        public IActionResult RefreshButton(int buttonRow, int buttonCol)
         {
-            // TODO: Here we need to update the Cell in the "hidden board" and update the view according to the Cell's neighbor states, etc.
-            System.Diagnostics.Debug.WriteLine("ButtonNumber: " + buttonNumber);
-            //if the cell is a normal button and not flagged, make it appart as a visited picture
-            if (Cells.ElementAt(buttonNumber).CellState == 0 && Cells.ElementAt(buttonNumber).flagged == false)
-            {
-                Cells.ElementAt(buttonNumber).CellPic = 1;
-            }
+            Cell clicked = gameBoard.Grid[buttonRow, buttonCol];
 
-            //if the cell is a bomb state and not flagged, make it appear as a bomb picture
-            if (Cells.ElementAt(buttonNumber).CellState == 1 && Cells.ElementAt(buttonNumber).flagged == false)
-            {
-                Cells.ElementAt(buttonNumber).CellPic = 2;
-            }
+            // Check for a losing state
+            int gameState = HasGameEnded(gameBoard, buttonRow, buttonCol, false);
 
-            return PartialView(Cells.ElementAt(buttonNumber));
+            // 
+            /*if (gameState == 0)
+            {
+                gameBoard.floodFill(buttonRow, buttonCol);
+            }*/
+
+            // We need to reveal all adjacent clear neighbors
+            // gameBoard.CalculateLiveNeighbors();
+
+            /* if(gameState == 0) return View("Index", gameBoard);*/
+
+            /*    if (gameState == 1) return Redirect("GameLost");
+                if (gameState == 2) return Redirect("GameWon");*/
+
+            clicked.Visited = true;
+            return PartialView(clicked);
         }
 
 
         //Change the button to a flag
-        public IActionResult FlagButton(int buttonNumber)
+        public IActionResult FlagButton(int buttonRow, int buttonCol)
         {
-            if (Cells.ElementAt(buttonNumber).flagged == false)
+            Cell clicked = gameBoard.Grid[buttonRow, buttonCol];
+            clicked.Flagged = !clicked.Flagged;
+
+            return PartialView(clicked);
+        }
+
+        // Result: 0 for no, 1 for loss, 2 for win
+        private int HasGameEnded(Board board, int row, int col, bool flagAttempt)
+        {
+            // Check if mouse button was a right click
+            if (flagAttempt)
             {
-                Cells.ElementAt(buttonNumber).CellPic = 3;
-                Cells.ElementAt(buttonNumber).flagged = true;
+                board.Grid[row, col].Flagged = !board.Grid[row, col].Flagged;
+                return 0;
             }
-            else
+
+            // Check if the button is already flagged. If so, do nothing
+            if (board.Grid[row, col].Flagged)
             {
-                Cells.ElementAt(buttonNumber).CellPic = 0;
-                Cells.ElementAt(buttonNumber).flagged = false;
+                return 0;
             }
-           
-            return PartialView(Cells.ElementAt(buttonNumber));
+
+            // Check if user hit a bomb
+            if (board.Grid[row, col].Live)
+            {
+                // Reveal all bombs
+                for (int r = 0; r < board.Grid.GetLength(0); r++)
+                {
+                    for (int c = 0; c < board.Grid.GetLength(1); c++)
+                    {
+                        // Set all live or previously-visited tiles to Visited so UI exposes all hidden mines
+                        board.Grid[r, c].Visited = board.Grid[r, c].Visited || board.Grid[r, c].Live;
+                    }
+                }
+                return 1;
+            }
+
+            board.Grid[row, col].Visited = true;
+            return 1;
         }
     }
 }

@@ -18,9 +18,9 @@ namespace MinesweeperClassLib
             Grid = new Cell[Size, Size];
             SetupLiveNeighbors();
         }
-        public Board(int difficulty)
+        public Board(int difficulty, int size = 16)
         {
-            Size = 16;
+            Size = size;
             // Difficulty adds a bit of an extra kick, for Moderate and Difficult settings
             // 10% of board is bombs for Easy
             //  With an added 4% or 20% percent added on top of that, depending
