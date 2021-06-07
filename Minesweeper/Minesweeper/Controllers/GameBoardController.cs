@@ -10,23 +10,12 @@ namespace Minesweeper.Controllers
 {
     public class GameBoardController : Controller
     {
-       /* static List<CellClass> Cells = new List<CellClass>();*/
         static Board gameBoard;
-       /* Random random = new Random();*/
         const int GRID_SIZE = 12; // 144 when squared
 
         public IActionResult Index()
         {
-            // TODO: Should be filling out a multi-dimensional ListArray of Cell instances.
-            /*if (Cells.Count < GRID_SIZE)
-            {
-                for (int i = 0; i < GRID_SIZE; i++)
-                {
-                    Cells.Add(new CellClass { Id = i, CellState = random.Next(2), CellPic = 0, LiveNeighbors = 0 });
-                }
-            }*/
-
-            gameBoard = new Board(GRID_SIZE);
+            gameBoard = new Board(20, GRID_SIZE);
             
             return View(gameBoard);
         }
@@ -40,30 +29,14 @@ namespace Minesweeper.Controllers
             // Check for a losing state
             int gameState = HasGameEnded(gameBoard, buttonRow, buttonCol, false);
             // We need to reveal all adjacent clear neighbors
-            gameBoard.CalculateLiveNeighbors();
+            // gameBoard.CalculateLiveNeighbors();
 
-           if(gameState == 0) return View("Index", gameBoard);
+          /* if(gameState == 0) return View("Index", gameBoard);*/
 
             if (gameState == 1) return Redirect("GameLost");
             if (gameState == 2) return Redirect("GameWon");
 
             return PartialView(clicked);
-
-            // TODO: Here we need to update the Cell in the "hidden board" and update the view according to the Cell's neighbor states, etc.
-            /* System.Diagnostics.Debug.WriteLine("ButtonNumber: " + buttonNumber);*/
-            /*           //if the cell is a normal button and not flagged, make it appart as a visited picture
-                       if (Cells.ElementAt(buttonNumber).CellState == 0 && Cells.ElementAt(buttonNumber).flagged == false)
-                       {
-                           Cells.ElementAt(buttonNumber).CellPic = 1;
-                       }
-
-                       //if the cell is a bomb state and not flagged, make it appear as a bomb picture
-                       if (Cells.ElementAt(buttonNumber).CellState == 1 && Cells.ElementAt(buttonNumber).flagged == false)
-                       {
-                           Cells.ElementAt(buttonNumber).CellPic = 2;
-                       }*/
-
-            /*    return PartialView(Cells.ElementAt(buttonNumber));*/
         }
 
 
@@ -73,18 +46,6 @@ namespace Minesweeper.Controllers
             Cell clicked = gameBoard.Grid[buttonRow, buttonCol];
             clicked.Flagged = !clicked.Flagged;
 
-            /* if (Cells.ElementAt(buttonNumber).flagged == false)
-             {
-                 Cells.ElementAt(buttonNumber).CellPic = 3;
-                 Cells.ElementAt(buttonNumber).flagged = true;
-             }
-             else
-             {
-                 Cells.ElementAt(buttonNumber).CellPic = 0;
-                 Cells.ElementAt(buttonNumber).flagged = false;
-             }
-
-             return PartialView(Cells.ElementAt(buttonNumber));*/
             return PartialView(clicked);
         }
 

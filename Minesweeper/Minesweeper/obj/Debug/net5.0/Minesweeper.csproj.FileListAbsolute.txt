@@ -317,4 +317,3 @@ C:\Users\drc98\Documents\GitHub\CST-247-CLC\Minesweeper\Minesweeper\obj\Debug\ne
 C:\Users\drc98\Documents\GitHub\CST-247-CLC\Minesweeper\Minesweeper\obj\Debug\net5.0\ref\Minesweeper.dll
 C:\Users\drc98\Documents\GitHub\CST-247-CLC\Minesweeper\Minesweeper\obj\Debug\net5.0\Minesweeper.pdb
 C:\Users\drc98\Documents\GitHub\CST-247-CLC\Minesweeper\Minesweeper\obj\Debug\net5.0\Minesweeper.genruntimeconfig.cache
-C:\Users\drc98\Documents\GitHub\CST-247-CLC\Minesweeper\Minesweeper\obj\Debug\net5.0\Minesweeper.csprojAssemblyReference.cache
