@@ -28,6 +28,8 @@ namespace Minesweeper.Controllers
 
             // Check for a losing state
             int gameState = HasGameEnded(gameBoard, buttonRow, buttonCol, false);
+            if (gameState == 0) gameBoard.floodFill(buttonRow, buttonCol);
+
             // We need to reveal all adjacent clear neighbors
             // gameBoard.CalculateLiveNeighbors();
 

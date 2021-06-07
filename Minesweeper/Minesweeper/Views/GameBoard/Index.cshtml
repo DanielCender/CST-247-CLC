@@ -20,29 +20,28 @@
         @{
             for (int row = 0; row < Model.Grid.GetLength(0); row++)
             {
-                     for (int col = 0; col < Model.Grid.GetLength(1); col++)
-                        {
-                            /*
-                            Logic attempting to implement here
-                            // Set all non-live, visited, non-flagged cells to
-                            // background color if they have > 0 live
-                            //  neighbors
-                            // Otherwise just set the text value
-                            if (board.Grid[r, c].Visited && board.Grid[r, c].LiveNeighbors > 0) boardBtns[r, c].Text = string.Format("{0}", board.Grid[r, c].LiveNeighbors);
-                            else if (board.Grid[r, c].Visited) boardBtns[r, c].BackColor = Color.FromArgb(167, 188, 216);
-                                */
-                            Cell c = Model.Grid[row, col];
-                            bool showBomb = c.Visited && c.Live;
-                            bool flag = c.Flagged;
-                            int imageIdx = 0;
-                            if(!c.Flagged && !c.Live)
-                            {
-                                imageIdx = 1;
-                            }
-                            if(c.Live && !c.Flagged)
-                            {
-                                imageIdx = 2;
-                            }
+                for (int col = 0; col < Model.Grid.GetLength(1); col++)
+                {
+                    /*
+                    Logic attempting to implement here
+                    // Set all non-live, visited, non-flagged cells to
+                    // background color if they have > 0 live
+                    //  neighbors
+                    // Otherwise just set the text value
+                    if (board.Grid[r, c].Visited && board.Grid[r, c].LiveNeighbors > 0) boardBtns[r, c].Text = string.Format("{0}", board.Grid[r, c].LiveNeighbors);
+                    else if (board.Grid[r, c].Visited) boardBtns[r, c].BackColor = Color.FromArgb(167, 188, 216);
+                        */
+                    Cell c = Model.Grid[row, col];
+                    bool showBomb = c.Visited && c.Live;
+                    bool flag = c.Flagged;
+                    int imageIdx = 0;
+                    if(!c.Flagged && !c.Live){
+                        imageIdx = c.Visited ? 1 : 0;
+                    }
+                    if(c.Live && !c.Flagged)
+                    {
+                        imageIdx = c.Visited ? 2 : 0;
+                    }
                                                     <div id="@row+@col">
                                                         <button class="btn" type="submit" name="ButtonNumber" value="@row+@col" asp-controller="GameBoard" asp-action="ButtonClick">
                                                             <img class="cell" src="~/img/@imagename[imageIdx]" />
