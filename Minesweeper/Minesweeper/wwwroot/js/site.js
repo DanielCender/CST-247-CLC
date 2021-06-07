@@ -45,7 +45,7 @@ $(function () {
 
     function ButtonClick(buttonPos, AjaxUrlSrc) {
         var [row, col] = buttonPos.split('+');
-
+        console.log('button position : ', row, col);
         $.ajax({
             datatype: "json",
             method: 'POST',

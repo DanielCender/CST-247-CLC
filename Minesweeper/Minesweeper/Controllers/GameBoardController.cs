@@ -15,7 +15,7 @@ namespace Minesweeper.Controllers
 
         public IActionResult Index()
         {
-            gameBoard = new Board(20, GRID_SIZE);
+            gameBoard = new Board(10, GRID_SIZE);
             
             return View(gameBoard);
         }
@@ -28,16 +28,22 @@ namespace Minesweeper.Controllers
 
             // Check for a losing state
             int gameState = HasGameEnded(gameBoard, buttonRow, buttonCol, false);
-            if (gameState == 0) gameBoard.floodFill(buttonRow, buttonCol);
+
+            // 
+            /*if (gameState == 0)
+            {
+                gameBoard.floodFill(buttonRow, buttonCol);
+            }*/
 
             // We need to reveal all adjacent clear neighbors
             // gameBoard.CalculateLiveNeighbors();
 
-          /* if(gameState == 0) return View("Index", gameBoard);*/
+            /* if(gameState == 0) return View("Index", gameBoard);*/
 
-            if (gameState == 1) return Redirect("GameLost");
-            if (gameState == 2) return Redirect("GameWon");
+            /*    if (gameState == 1) return Redirect("GameLost");
+                if (gameState == 2) return Redirect("GameWon");*/
 
+            clicked.Visited = true;
             return PartialView(clicked);
         }
 
